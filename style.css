@@ -1,0 +1,119 @@
+body {
+	background: url('img/bg.png');
+}
+
+.block {
+	width: 65%;
+	margin: 30px auto;
+	box-shadow: 30px 60px 300px rgba(0,0,0,0.5);
+	border-radius: 5px;
+	position: relative;
+}
+
+.overflow {
+	overflow: hidden;
+}
+
+.but {
+	width: 10px;
+	height: 10px;
+	border: solid black 1px;
+	border-radius: 50px;
+	float: left;
+	margin: 3px;
+}
+
+.but:last-child {
+	margin-right: 0;
+}
+
+.but:first-child {
+	margin-left: 0;
+}
+
+#buttons {
+	width: 10px;
+	margin: 5px auto;
+}
+
+.picture {
+	width: 100%;
+}
+
+.hide {
+	opacity: 0;
+	-webkit-animation:
+        MyAnimation3a 1s;
+}
+
+.bg {
+	background: red;
+	transition-duration: .4s;
+}
+
+.text {
+	position: relative;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 900;
+	color: white;
+    opacity: .9;
+    margin-top: -22px;
+    font-size: 1.1em;
+    background: black;
+}
+
+.Sl {
+	font-style: italic;
+	font-weight: 400;
+	font-size: .8em;
+}
+
+.title {
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	margin: 15px 0 -10px 0;
+}
+
+.content {
+	padding: 15px 0 15px 40px;
+    color: #a7c65d;
+}
+
+.description {
+	font-weight: 400;
+	font-size: .85em;
+	margin: -25px 0 0 40px;
+	padding: 1px 15px 15px 0;
+}
+
+
+@-webkit-keyframes MyAnimation3a {
+	from { position: relative; left: 50%; opacity: .6;}
+    to { left: -50%; opacity: 1;}
+}
+
+.animation {
+	-webkit-animation:
+        MyAnimation3a .4s;
+}
+
+
+.arrow {
+	width: 18%;
+	position: absolute;
+	top: 50%;
+	left: -25%;
+	margin-top: -9%;
+	z-index: 2;
+}
+
+.arrow2 {
+	left: 105%;
+	width: 18%;
+	position: absolute;
+	top: 50%;
+	margin-top: -9%;
+	z-index: 2;
+}
+
+
