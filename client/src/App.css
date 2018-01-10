@@ -1,0 +1,13 @@
+.Name_block {
+  background: grey;
+  border-radius: 10px;
+  overflow:hidden;
+  text-align: center;
+  width: 170px;
+  margin: 10px auto;
+}
+
+.Name_field {
+  background: lightgrey;
+  padding: 5px;
+}
