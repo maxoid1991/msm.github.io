@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import axios from 'axios';
 
 let port ='http://localhost:5000';
@@ -28,7 +27,7 @@ componentDidMount(){
           <div className='Name_block'>
             <p key={0} className='Name_field'>{item.name}</p>
             <p key={1} className='Name_field'>{item.age}</p>
-            <p key={1} className='Name_field'>{item.city}</p>
+            <p key={1} className='Name_field'>{item.city}</p>          
           </div>
         )})}
       </div>
