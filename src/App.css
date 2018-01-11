@@ -1,13 +1,18 @@
 .Name_block {
-  background: grey;
-  border-radius: 10px;
   overflow:hidden;
   text-align: center;
-  width: 170px;
-  margin: 10px auto;
+  padding: 10px;
 }
 
 .Name_field {
   background: lightgrey;
   padding: 5px;
+}
+
+.del_block {
+  height: 30px;
+}
+
+.submit {
+  float: right;
 }
