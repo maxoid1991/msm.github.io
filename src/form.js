@@ -18,7 +18,6 @@ class Form extends Component {
          let age = all_blocks[i].firstChild.nextSibling.nextSibling.innerHTML;
          let city = all_blocks[i].lastChild.innerHTML;
          mass[i] = {"name": name, "age" : age, "city": city};
-
        }
 
        axios.post('/save', mass).then(res => {

@@ -16,3 +16,51 @@
 .submit {
   float: right;
 }
+
+
+.glyphicon-edit {
+  color: lightgrey;
+  float: left;
+}
+
+.glyphicon-arrow-down {
+  float: left;
+  margin: 4px;
+  font-size: 12px;
+}
+
+.Nme_field {
+  margin: 6px;
+  width: 170px;
+  text-align: center;
+}
+
+.left-arrow, .right-arrow {
+  color: lightgrey;
+}
+
+.right-arrow:hover, .left-arrow:hover, .glyphicon-edit:hover {
+  color: grey;
+}
+
+/*Registration fields*/
+.LogInField, .RegistrationField {
+  position: absolute;
+  top: -320px;
+  left: 50%;
+  margin-left: -125px;
+  width: 250px;
+  padding: 30px;
+  transition-duration: .5s;
+}
+
+.twoForms {
+  height: 330px;
+  transition-duration: .5s;
+  margin-top: -320px;
+}
+
+#LogInClose {
+  float: none;
+  margin-left: 177px;
+}
