@@ -10,18 +10,26 @@ class Form extends Component {
      SaveAll(){
 
        let all_blocks = document.getElementsByClassName('Name_block');
+       let login = document.getElementById("Auth_Name_field").innerHTML;
 
-       let mass = [];
+       let mass = [
+         {
+           "login": login,
+           "info": []
+        }
+       ];
 
        for (var i = 0; i < all_blocks.length; i++) {
          let name = all_blocks[i].firstChild.nextSibling.innerHTML;
          let age = all_blocks[i].firstChild.nextSibling.nextSibling.innerHTML;
          let city = all_blocks[i].lastChild.innerHTML;
-         mass[i] = {"name": name, "age" : age, "city": city};
+         mass[0].info[i] = {"name": name, "age" : age, "city": city};
        }
 
+       console.log(mass);
+
        axios.post('/save', mass).then(res => {
-        console.log('Data recieved!');
+        console.log(res.data);
       })
      }
 

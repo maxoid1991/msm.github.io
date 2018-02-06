@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { setTimeout } from 'timers';
 
 class AuthFront extends Component {
     constructor(props){
@@ -7,7 +8,40 @@ class AuthFront extends Component {
     }
 
 
-//Registration Fields    
+//Registration Fields
+
+RegDataSend(){
+    let email = document.getElementById("RegistrationEmail").value;
+    let adress = document.getElementById("RegistrationAdress").value;
+    let pass = document.getElementById("RegistrationPass").value;
+
+    let mass = [];
+    mass.push(email, adress, pass);
+
+    axios.post('/registration', mass).then(res => {
+        console.log('Data recieved!');
+        
+        if (res.data == true) {
+            document.getElementById("RegistrationEmail").value = "";
+            document.getElementById("RegistrationAdress").value = "";
+            document.getElementById("RegistrationPass").value = "";
+            document.getElementsByClassName("RegistrationField")[0].style.cssText = "top: -320px; opacity: 0";
+            document.getElementsByClassName("twoForms")[0].style.cssText = "margin: -320px auto 0; height: 330px;";
+
+            //Success registration
+
+            setTimeout(function(){
+                document.getElementsByClassName("RegSucess")[0].style.cssText = "height: 120px; overflow: visible; opacity: 1;";
+            }, 1000);
+
+            setTimeout(function(){
+                document.getElementsByClassName("RegSucess")[0].style.cssText = "height: 0px; overflow: hidden; opacity: 0;";
+            }, 5000);
+
+            
+        }
+    })
+}
 
 showLogIn(){
     let FormsField = document.getElementsByClassName("twoForms")[0].style.cssText = "margin: 0px auto; height: 250px;";
@@ -26,6 +60,15 @@ hideReg(){
     let LogInField = document.getElementsByClassName("LogInField")[0].style.cssText = "top: -320px; opacity: 0";
     let RegField = document.getElementsByClassName("RegistrationField")[0].style.cssText = "top: -320px; opacity: 1";
 
+}
+
+LogOut(){
+    console.log("Выйти!");
+    let logOutmass = [0];
+    axios.post('/auth_logout', logOutmass).then(res => {
+        console.log('Data recieved!');
+        window.location.href = window.location.href;
+      })
 }
 
 render() {
@@ -63,7 +106,7 @@ render() {
 
                 <div class="form-group">
                     <label for="RegistrationEmail">Email address</label>
-                    <input type="email" className="form-control" id="RegistrationEmail" aria-describedby="emailHelp" placeholder="Enter email" />
+                    <input type="email" className="form-control" id="RegistrationAdress" aria-describedby="emailHelp" placeholder="Enter email" />
                 </div>
 
                 <div class="form-group">
@@ -71,9 +114,21 @@ render() {
                     <input type="password" className="form-control" id="RegistrationPass" aria-describedby="emailHelp" placeholder="Enter password" />
                 </div>
                 <div>
-                <button type="button" className="RegistrationButton btn btn-primary">Регистрация</button>
+                <button type="button" className="RegistrationButton btn btn-primary" onClick={this.RegDataSend.bind(this)}>Регистрация</button>
                 </div>          
             </form>
+            </div>
+
+            <div className="col-md-5 RegSucess">
+                <div className="alert alert-success" role="alert">
+                    <h4 className="alert-heading">Вы успешно зарегистрированы!</h4><hr/>
+                    <p className="mb-0">Теперь зайдите в систему.</p>
+                </div>
+            </div>
+
+
+            <div className="auth_Name col-md-12">
+                <p className="ath">Добрый день, <b><span id="Auth_Name_field">Василий</span></b>.<span className="LogOut" onClick={this.LogOut.bind(this)}>Выйти.</span></p>
             </div>
             
             <div className="col-md-12 AuthButtons">          

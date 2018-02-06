@@ -20,8 +20,21 @@ constructor(props){
 
 componentDidMount(){
   axios.get(port).then(res => {
-    this.setState({data: res.data})
-    console.log(this.state.data);
+    console.log(res.data);
+    console.log(res.data.id);
+    if (res.data.id > 0) {
+      document.body.getElementsByClassName("auth_Name")[0].style.cssText = "display: block";
+      document.body.getElementsByClassName("AuthButtons")[0].style.cssText = "display: none";
+      document.getElementById("Auth_Name_field").innerHTML = res.data.login;
+      console.log('hello')
+      this.setState({data: res.data.info})
+    } else {
+      console.log('buy!')
+      this.setState({data: res.data[0].info})
+    }
+
+
+
   })
 }
 
@@ -62,9 +75,30 @@ logInData(){
       if(typeof res.data == "string") {
         alert(res.data);
       } else {
-        this.setState({data: res.data[0]});
+        this.setState({data: res.data[0].info});
+        console.log(res.data);
+
+        //Clear Auth form and hide it
+
+        document.getElementById("LogInEmail").value = "";
+        document.getElementById("LogInPass").value = "";
+        document.getElementsByClassName("twoForms")[0].style.cssText = "margin: -320px auto 0; height: 330px;"
+        document.getElementsByClassName("LogInField")[0].style.cssText = "top: -320px; opacity: 0";
+        document.getElementsByClassName("RegistrationField")[0].style.cssText = "top: -320px; opacity: 1";
+
+        document.getElementsByClassName("auth_Name")[0].style.cssText = "display: block";
+        document.getElementsByClassName("AuthButtons")[0].style.cssText = "display: none";
+
+        document.getElementById("Auth_Name_field").innerHTML = res.data[0].login;
+
       }
+
   })
+
+
+
+
+
 }
 
 

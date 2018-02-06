@@ -64,3 +64,23 @@
   float: none;
   margin-left: 177px;
 }
+
+.auth_Name  {
+  margin-left: 13px;
+}
+
+.LogOut {
+  margin-left: 10px;
+}
+
+.auth_Name {
+  margin-top: 8px;
+  display: none;
+}
+
+.RegSucess {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition-duration: .5s;
+}

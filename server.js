@@ -6,32 +6,60 @@ var auth = require('./auth');
 app.use(bodyParser.json());
 
 let mass = [
-	{"name": "John", "age": 21, "city":"New York"},
-  {"name": "Ted", "age":32, "city": "California"},
-  {"name": "Stas", "age":17, "city": "Los Angeles"},
-  {"name": "Tim", "age":44, "city": "Alabama"},
-  {"name": "Rojer", "age":27, "city": "Uta"},
-  {"name": "Linda", "age":23, "city": "Texas"},
+	{
+    "login": "test_login",
+    "password" : "test",
+    "email": "shameless.cansol@gmail.com",
+    "info" : [
+        {"name" : "John_test", "age" : 21, "city" : "New York"},
+        {"name": "Ted_test", "age":32, "city": "California"}
+    ]
+}
 ];
 
+let mass2 = [];
+let id = 0;
 
 app.get('/', function (req, res) {
-  res.send(mass);
+  if(id === 0) {
+    res.send(mass)
+  } else {
+    res.send(mass2)
+  }
+});
+
+//Logout function;
+
+app.post('/auth_logout', function(req, res){
+  id = req.body[0];
+  res.send(true);
 });
 
 //Authorization test data
 app.post('/auth_login', function (req, res) {
+  console.log(mass);
   res.send(auth.Auth(req.body));
+  id = auth.Auth(req.body);
+  id = id[0].id;
+  mass2 = auth.Auth(req.body);
+  console.log(id);
 });
 
+//Registration
+app.post('/registration', function(req, res){
+  res.send(auth.Reg(req.body));
+  console.log(auth.Reg(req.body));
+})
 
+//Save Updated data ??????????????????????
 
 app.post('/save', function (req, res) {
-  console.log(req.body);
-  mass.splice(0, mass.length);
-  mass = req.body;
-  console.log(mass);
+  let change = auth.newInfo(req.body);
+  id = auth.newInfo(req.body).id;
+  mass2 = auth.newInfo(req.body);
+  console.log(mass2);
 });
+
 
 app.listen(5000, function () {
   console.log('Example app listening on port 5000!');
