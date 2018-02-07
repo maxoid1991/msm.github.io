@@ -48,8 +48,8 @@ class Form extends Component {
               <label for="exampleInputPassword2">City</label>
               <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Enter city"/>
             </div>
-            <button type="button" class="btn btn-primary " onClick={this.props.PostData}>Submit</button>
-            <button type="button" class="btn btn-success submit" onClick={this.SaveAll.bind(this)} >Save all</button>
+            <button type="button" class="btn btn-primary " id="SubBtn" onClick={this.props.PostData}>Submit</button>
+            <button type="button" class="btn btn-success submit" id="LogBtn" onClick={this.SaveAll.bind(this)} >Save all</button>
           </form>
         )
     }    

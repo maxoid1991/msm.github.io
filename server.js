@@ -22,9 +22,10 @@ let id = 0;
 
 app.get('/', function (req, res) {
   if(id === 0) {
-    res.send(mass)
+    res.send(mass);
   } else {
-    res.send(mass2)
+    res.send(mass2);
+    //console.log(mass2);
   }
 });
 
@@ -48,16 +49,16 @@ app.post('/auth_login', function (req, res) {
 //Registration
 app.post('/registration', function(req, res){
   res.send(auth.Reg(req.body));
-  console.log(auth.Reg(req.body));
 })
 
-//Save Updated data ??????????????????????
+//Save Updated data 
 
 app.post('/save', function (req, res) {
   let change = auth.newInfo(req.body);
   id = auth.newInfo(req.body).id;
-  mass2 = auth.newInfo(req.body);
-  console.log(mass2);
+  mass2.push(auth.newInfo(req.body));
+  console.log(auth.newInfo(req.body));
+
 });
 
 

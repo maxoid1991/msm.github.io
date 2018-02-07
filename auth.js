@@ -66,13 +66,14 @@ let Reg = (data) => {
 let newInfo = (data) => {
 
     for (var i = 0; i < Info.length; i++) {
-        if(data[0].login === Info[i].login || Info[i].password) {
+        if(data[0].login === Info[i].login || data[0].login === Info[i].password) {
             Info[i].info = [];
             Info[i].info = data[0].info;
 
             return Info[i];
+            break;
         } else {
-            continue;
+           continue;
         }
     }
 

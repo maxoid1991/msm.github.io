@@ -11,30 +11,32 @@ class App extends Component {
 constructor(props){
   super(props);
   this.state = {
-    data: []
+    data: [],
   }
   
 }
 
-//Upload data from server
+//Upload data from server ?????? EROR
 
 componentDidMount(){
   axios.get(port).then(res => {
-    console.log(res.data);
-    console.log(res.data.id);
-    if (res.data.id > 0) {
+
+    let updInfo = () => {
       document.body.getElementsByClassName("auth_Name")[0].style.cssText = "display: block";
       document.body.getElementsByClassName("AuthButtons")[0].style.cssText = "display: none";
-      document.getElementById("Auth_Name_field").innerHTML = res.data.login;
-      console.log('hello')
-      this.setState({data: res.data.info})
-    } else {
-      console.log('buy!')
-      this.setState({data: res.data[0].info})
+      document.getElementById("Auth_Name_field").innerHTML = res.data[0].login;
+      document.getElementById("LogBtn").style.cssText = "display: block";
     }
 
+    if (res.data[0].id > 0) {
+      this.setState({data: res.data[0].info});
+      updInfo();
+      document.getElementById("LogBtn").style.cssText = "opacity: 1; left: 0; z-index: 1";
 
-
+    } else {
+      this.setState({data: res.data[0].info});
+      document.getElementById("LogBtn").style.cssText = "opacity: 0; left: -110px; z-index: -1";
+    }
   })
 }
 
@@ -76,7 +78,6 @@ logInData(){
         alert(res.data);
       } else {
         this.setState({data: res.data[0].info});
-        console.log(res.data);
 
         //Clear Auth form and hide it
 
@@ -90,6 +91,7 @@ logInData(){
         document.getElementsByClassName("AuthButtons")[0].style.cssText = "display: none";
 
         document.getElementById("Auth_Name_field").innerHTML = res.data[0].login;
+        document.getElementById("LogBtn").style.cssText = "opacity: 1; left: 0; z-index: 1";
 
       }
 
