@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var auth = require('./auth');
+var MongoClient = require('mongodb').MongoClient;
+var db;
 
 app.use(bodyParser.json());
 
@@ -22,7 +24,14 @@ let id = 0;
 
 app.get('/', function (req, res) {
   if(id === 0) {
-    res.send(mass);
+
+    //Connect DB
+
+    db.collection("List").find().toArray(function (err, docs) {
+      res.send(docs);
+    });
+
+    //res.send(mass);
   } else {
     res.send(mass2);
     //console.log(mass2);
@@ -62,6 +71,21 @@ app.post('/save', function (req, res) {
 });
 
 
-app.listen(5000, function () {
-  console.log('Example app listening on port 5000!');
+MongoClient.connect("mongodb://localhost:27017/newBase", function(err, database){
+  if (err) {
+    console.log(err);
+  }
+
+  db = database;
+
+  //Start server after databese success connection
+
+  app.listen(5000, function () {
+    console.log('Example app listening on port 5000!');
+  });
+
+
+
+
+
 });
