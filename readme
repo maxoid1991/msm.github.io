@@ -1,0 +1,5 @@
+1. cd folder
+2. npm install (install dependencies)
+3. sudo mongod (on mac) (run database)
+4. node server.js (run server)
+5. npm start (run client)

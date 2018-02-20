@@ -1,3 +1,6 @@
+var db = require('./db');
+var ObjectID = require('mongodb').ObjectID;
+
 let Info = [
     {
         "login": "shameless91",
@@ -62,22 +65,61 @@ let Reg = (data) => {
     return true;
 }
 
-//Add new data
+//Add new data !!!!! Не возвращает через return значения
+
 let newInfo = (data) => {
 
-    for (var i = 0; i < Info.length; i++) {
-        if(data[0].login === Info[i].login || data[0].login === Info[i].password) {
-            Info[i].info = [];
-            Info[i].info = data[0].info;
 
-            return Info[i];
-            break;
-        } else {
-           continue;
+
+    db.get().collection("UsersInfo").find().toArray(function(err,docs){
+
+
+       for (var i = 0; i < docs.length; i++) {
+
+            if (data[0].login === docs[i].login) {
+
+                // Update database
+                db.get().collection("UsersInfo").updateOne(
+                    {_id: ObjectID(docs[i]._id)},
+                    {$set: {info: data[0].info}},
+                    function(err, result){console.log("База обновлена!")}
+                )
+                console.log("Дата: " + docs.id);
+                break;
+
+            } else {
+                console.log("Не работает!");
+                continue;
+
+            }
+
         }
-    }
 
 
+    });
+
+
+
+
+
+
+
+
+
+
+
+    //for (var i = 0; i < Info.length; i++) {
+        //if(data[0].login === Info[i].login || data[0].login === Info[i].password) {
+            //Info[i].info = [];
+            //Info[i].info = data[0].info;
+
+            //return Info[i];
+            //break;
+        //} else {
+           //continue;
+        //}
+
+    //}
 }
 
 

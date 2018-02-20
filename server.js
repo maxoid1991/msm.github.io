@@ -2,8 +2,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var auth = require('./auth');
-var MongoClient = require('mongodb').MongoClient;
-var db;
+
+var db = require('./db');
 
 app.use(bodyParser.json());
 
@@ -27,10 +27,11 @@ app.get('/', function (req, res) {
 
     //Connect DB
 
-    db.collection("List").find().toArray(function (err, docs) {
+    db.get().collection("List").find().toArray(function (err, docs) {
       res.send(docs);
     });
 
+  
     //res.send(mass);
   } else {
     res.send(mass2);
@@ -64,28 +65,21 @@ app.post('/registration', function(req, res){
 
 app.post('/save', function (req, res) {
   let change = auth.newInfo(req.body);
-  id = auth.newInfo(req.body).id;
-  mass2.push(auth.newInfo(req.body));
-  console.log(auth.newInfo(req.body));
-
+  //id = auth.newInfo(req.body).id;
+  //mass2.push(auth.newInfo(req.body));
+  //console.log(auth.newInfo(req.body));
+  console.log("Говнище " + change);
 });
 
 
-MongoClient.connect("mongodb://localhost:27017/newBase", function(err, database){
+db.connect("mongodb://localhost:27017/newBase", function(err){
   if (err) {
     console.log(err);
   }
-
-  db = database;
 
   //Start server after databese success connection
 
   app.listen(5000, function () {
     console.log('Example app listening on port 5000!');
   });
-
-
-
-
-
 });
