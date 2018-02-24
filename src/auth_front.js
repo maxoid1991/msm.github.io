@@ -19,7 +19,7 @@ RegDataSend(){
     mass.push(email, adress, pass);
 
     axios.post('/registration', mass).then(res => {
-        console.log('Data recieved!');
+        console.log(res.data);
         
         if (res.data == true) {
             document.getElementById("RegistrationEmail").value = "";

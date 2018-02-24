@@ -4,6 +4,9 @@ import axios from 'axios';
 class Form extends Component {
     constructor(props){
         super(props);
+        this.state = {
+          date2: [],
+        }
      }
 
        
@@ -29,6 +32,8 @@ class Form extends Component {
        console.log(mass);
 
        axios.post('/save', mass).then(res => {
+        this.setState({date2: res.data});
+        console.log("Труляля!");
         console.log(res.data);
       })
      }

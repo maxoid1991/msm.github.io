@@ -7,22 +7,12 @@ var db = require('./db');
 
 app.use(bodyParser.json());
 
-let mass = [
-	{
-    "login": "test_login",
-    "password" : "test",
-    "email": "shameless.cansol@gmail.com",
-    "info" : [
-        {"name" : "John_test", "age" : 21, "city" : "New York"},
-        {"name": "Ted_test", "age":32, "city": "California"}
-    ]
-}
-];
 
 let mass2 = [];
 let id = 0;
 
 app.get('/', function (req, res) {
+
   if(id === 0) {
 
     //Connect DB
@@ -31,13 +21,12 @@ app.get('/', function (req, res) {
       res.send(docs);
     });
 
-  
-    //res.send(mass);
   } else {
     res.send(mass2);
-    //console.log(mass2);
   }
 });
+
+
 
 //Logout function;
 
@@ -46,29 +35,43 @@ app.post('/auth_logout', function(req, res){
   res.send(true);
 });
 
+
+
 //Authorization test data
 app.post('/auth_login', function (req, res) {
-  console.log(mass);
-  res.send(auth.Auth(req.body));
-  id = auth.Auth(req.body);
-  id = id[0].id;
-  mass2 = auth.Auth(req.body);
-  console.log(id);
+
+  let backData = auth.Auth(req.body);
+
+  backData.then(function(result){
+
+    if(result.info) {
+
+    let mass = [];
+    mass.push(result.info, result.login);
+    res.send(mass);
+    id = result.id;
+    mass2 = [];
+    mass2.push(result.id, result.info, result.login);
+
+    } else {
+      res.send(result);
+    }
+  })
 });
+
 
 //Registration
 app.post('/registration', function(req, res){
   res.send(auth.Reg(req.body));
 })
 
+
 //Save Updated data 
 
 app.post('/save', function (req, res) {
   let change = auth.newInfo(req.body);
-  //id = auth.newInfo(req.body).id;
-  //mass2.push(auth.newInfo(req.body));
-  //console.log(auth.newInfo(req.body));
-  console.log("Говнище " + change);
+  mass2 = [id];
+  mass2.push(req.body[0].info, req.body[0].login);
 });
 
 

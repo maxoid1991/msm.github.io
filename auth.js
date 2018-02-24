@@ -1,66 +1,80 @@
 var db = require('./db');
 var ObjectID = require('mongodb').ObjectID;
 
-let Info = [
-    {
-        "login": "shameless91",
-        "password" : "max91",
-        "email": "shameless.cansol@gmail.com",
-        "id" : 1,
-        "info" : [
-            {"name" : "John", "age" : 21, "city" : "New York"},
-            {"name": "Ted", "age":32, "city": "California"}
-        ]
-    },
-    {
-        "login": "shameless92",
-        "password" : "max92",
-        "email": "shameless.cansol@gmail.com",
-        "id" : 2,
-        "info" : [
-            {"name" : "John_new", "age" : 21, "city" : "New York"},
-            {"name": "Ted_new", "age":32, "city": "California"}
-        ]
-    },
-];
 
 //LogIn function
 let Auth = (data) => {
 
+    //Take all data
+
+    let Data = db.get().collection("UsersInfo").find().toArray();
+
+    //Processing using promise
+
+    return Data.then(function(docs){
+
+        console.log(data);
+        for (var i = 0; i < docs.length; i++) {
+            if (data[0] === docs[i].login && data[1] === docs[i].password) {
+                return docs[i];
+                break;
+            } else {
+                continue;
+                return "Вы не прошли аутентификацию, попробуйте еще раз!";
+            }
+        }
+    })
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //Check email and password;
 
-    let ArrLen = Info.length;
-    let mass = [];
+    //let ArrLen = Info.length;
+    //let mass = [];
 
-    for (var i = 0; i < ArrLen; i++) {
-        if (data[1] === Info[i].password && data[0] === Info[i].login || data[0] === Info[i].email) {
-                mass.push(Info[i]);
-                break;
-        } else {
-            continue;
-        }
-    } 
+    //for (var i = 0; i < ArrLen; i++) {
+        //if (data[1] === Info[i].password && data[0] === Info[i].login || data[0] === Info[i].email) {
+                //mass.push(Info[i]);
+                //break;
+        //} else {
+            //continue;
+        //}
+    //} 
 
-    if (mass.length > 0) {
-        return mass
-    } else {
-        return "Вы не прошли аутентификацию, попробуйте еще раз!"
-    }
+    //if (mass.length > 0) {
+        //return mass
+    //} else {
+        //return "Вы не прошли аутентификацию, попробуйте еще раз!"
+    //}
 }
+
+
+
+
 
 //Registration function
 
 let Reg = (data) => {
-    let newUser = {
-        "login": data[0],
-        "password" : data[2],
-        "email": data[1],
-        "id" : Info.length + 1,
-        "info" : []
-    }
 
-    Info.push(newUser);
+    db.get().collection("UsersInfo").insertOne({login: data[0], password: data[2], email: data[1], id: 1, info:[]});
+
+    //Info.push(newUser);
 
     return true;
 }
@@ -68,8 +82,6 @@ let Reg = (data) => {
 //Add new data !!!!! Не возвращает через return значения
 
 let newInfo = (data) => {
-
-
 
     db.get().collection("UsersInfo").find().toArray(function(err,docs){
 
@@ -88,24 +100,12 @@ let newInfo = (data) => {
                 break;
 
             } else {
-                console.log("Не работает!");
+                //console.log("Не работает!");
                 continue;
 
             }
-
         }
-
-
     });
-
-
-
-
-
-
-
-
-
 
 
     //for (var i = 0; i < Info.length; i++) {
@@ -124,7 +124,6 @@ let newInfo = (data) => {
 
 
 
-module.exports.Info = Info;
 module.exports.Auth = Auth;
 module.exports.Reg = Reg;
 module.exports.newInfo = newInfo;

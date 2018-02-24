@@ -20,16 +20,18 @@ constructor(props){
 
 componentDidMount(){
   axios.get(port).then(res => {
+    console.log("Это говно: ")
+    console.log(res.data)
 
     let updInfo = () => {
       document.body.getElementsByClassName("auth_Name")[0].style.cssText = "display: block";
       document.body.getElementsByClassName("AuthButtons")[0].style.cssText = "display: none";
-      document.getElementById("Auth_Name_field").innerHTML = res.data[0].login;
+      document.getElementById("Auth_Name_field").innerHTML = res.data[2];
       document.getElementById("LogBtn").style.cssText = "display: block";
     }
 
-    if (res.data[0].id > 0) {
-      this.setState({data: res.data[0].info});
+    if (res.data[0] > 0) {
+      this.setState({data: res.data[1]});
       updInfo();
       document.getElementById("LogBtn").style.cssText = "opacity: 1; left: 0; z-index: 1";
 
@@ -72,12 +74,13 @@ logInData(){
   console.log(EmPass);
 
   axios.post('/auth_login', EmPass).then(res => {
+      console.log("Вот это говно: ")
       console.log(res.data);
 
       if(typeof res.data == "string") {
         alert(res.data);
       } else {
-        this.setState({data: res.data[0].info});
+        this.setState({data: res.data[0]});
 
         //Clear Auth form and hide it
 
@@ -90,7 +93,7 @@ logInData(){
         document.getElementsByClassName("auth_Name")[0].style.cssText = "display: block";
         document.getElementsByClassName("AuthButtons")[0].style.cssText = "display: none";
 
-        document.getElementById("Auth_Name_field").innerHTML = res.data[0].login;
+        document.getElementById("Auth_Name_field").innerHTML = res.data[1];
         document.getElementById("LogBtn").style.cssText = "opacity: 1; left: 0; z-index: 1";
 
       }
