@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { setTimeout } from 'timers';
 
 class DeleteBlock extends Component {
 
@@ -30,6 +31,8 @@ class DeleteBlock extends Component {
         if (this.state.count % 2 == 0) {
 
          let NM_field = event.target.parentNode.parentNode.getElementsByClassName("Name_field");
+         //console.log("Инпуты")
+         //console.log(NM_field.length);
                         
             for (var i = 0; i < NM_field.length; i++) {
 
@@ -46,13 +49,19 @@ class DeleteBlock extends Component {
                 event.target.parentNode.parentNode.appendChild(Inp);      
             }
                 // Del p fields
-                let p = event.target.parentNode.parentNode.getElementsByTagName("p");
-                for (var i = 0; i < 3; i++) {
-                    p[0].remove();
+                //let p = event.target.parentNode.parentNode.getElementsByTagName("p");
+
+
+                let DelNodesLen = NM_field.length;
+
+                for (var i = 0; i < DelNodesLen; i++) {
+                    event.target.parentNode.parentNode.removeChild(NM_field[0]);
+                    //console.log(NM_field.length);
                 }
 
+
             this.setState({count: this.state.count + 1})
-            console.log(this.state.count);
+            //console.log(this.state.count);
 
         } else {
             //Back tag > p function
@@ -69,9 +78,9 @@ class DeleteBlock extends Component {
 
             //Del input
 
-            let inp = event.target.parentNode.parentNode.getElementsByTagName("input");
-            for (var i = 0; i < 3; i++) {
-                inp[0].remove();
+            let DelNodesInpLen = Nme_field.length;
+            for (var i = 0; i < DelNodesInpLen; i++) {
+                event.target.parentNode.parentNode.removeChild(Nme_field[0]);
             }
             this.setState({count: this.state.count + 1})
 

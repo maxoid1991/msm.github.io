@@ -20,8 +20,8 @@ constructor(props){
 
 componentDidMount(){
   axios.get(port).then(res => {
-    console.log("Это говно: ")
-    console.log(res.data)
+    console.log("Это говно 1 загрузка: ")
+    //console.log(res.data[0].info[0].tasks);
 
     let updInfo = () => {
       document.body.getElementsByClassName("auth_Name")[0].style.cssText = "display: block";
@@ -31,12 +31,14 @@ componentDidMount(){
     }
 
     if (res.data[0] > 0) {
-      this.setState({data: res.data[1]});
+      //console.log("Эта дичь: ")
+      //console.log(res.data[1][0].tasks);
+      this.setState({data: res.data[1][0].tasks});
       updInfo();
       document.getElementById("LogBtn").style.cssText = "opacity: 1; left: 0; z-index: 1";
 
     } else {
-      this.setState({data: res.data[0].info});
+      this.setState({data: res.data[0].info[0].tasks});
       document.getElementById("LogBtn").style.cssText = "opacity: 0; left: -110px; z-index: -1";
     }
   })
@@ -74,13 +76,13 @@ logInData(){
   console.log(EmPass);
 
   axios.post('/auth_login', EmPass).then(res => {
-      console.log("Вот это говно: ")
-      console.log(res.data);
+      console.log("Вот это говно приходит: ")
+      console.log(res.data[0][0].tasks);
 
       if(typeof res.data == "string") {
         alert(res.data);
       } else {
-        this.setState({data: res.data[0]});
+        this.setState({data: res.data[0][0].tasks});
 
         //Clear Auth form and hide it
 
@@ -117,18 +119,13 @@ logInData(){
 
         <div className="Blocks">
 
-        {this.state.data.map((item, id) => {return (
+        {this.state.data.map((item, id) => {return(
           <div id={id} className='Name_block col-md-2 col-xs-6 col-sm-4'>
-            <Del_Block ref="a"/>
-            <p key={0} className='Name_field'>
-              {item.name}
-            </p>
-            <p key={1} className='Name_field'>
-              {item.age}
-            </p>
-            <p key={1} className='Name_field'>
-              {item.city}
-            </p>          
+          <Del_Block ref="a"/>
+          {item.map((itm, id) => {return(
+            <p key={0} className='Name_field'>{itm}</p>
+          )})}
+          
           </div>
         )})}
 

@@ -18,18 +18,25 @@ class Form extends Component {
        let mass = [
          {
            "login": login,
-           "info": []
+           "info": [{"tasks": []}]
         }
        ];
 
        for (var i = 0; i < all_blocks.length; i++) {
-         let name = all_blocks[i].firstChild.nextSibling.innerHTML;
-         let age = all_blocks[i].firstChild.nextSibling.nextSibling.innerHTML;
-         let city = all_blocks[i].lastChild.innerHTML;
-         mass[0].info[i] = {"name": name, "age" : age, "city": city};
+         let name = all_blocks[i].getElementsByClassName("Name_field").length;
+
+         let nwMass = [];
+
+         for (var u = 0; u < name; u++) {
+           let Inf = all_blocks[i].getElementsByClassName("Name_field")[u].innerHTML;
+           nwMass.push(Inf);
+         }
+
+         mass[0].info[0].tasks.push(nwMass);
        }
 
        console.log(mass);
+
 
        axios.post('/save', mass).then(res => {
         this.setState({date2: res.data});

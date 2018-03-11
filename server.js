@@ -7,15 +7,12 @@ var db = require('./db');
 
 app.use(bodyParser.json());
 
-
 let mass2 = [];
 let id = 0;
 
 app.get('/', function (req, res) {
 
   if(id === 0) {
-
-    //Connect DB
 
     db.get().collection("List").find().toArray(function (err, docs) {
       res.send(docs);
@@ -27,14 +24,12 @@ app.get('/', function (req, res) {
 });
 
 
-
 //Logout function;
 
 app.post('/auth_logout', function(req, res){
   id = req.body[0];
   res.send(true);
 });
-
 
 
 //Authorization test data

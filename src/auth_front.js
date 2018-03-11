@@ -62,6 +62,8 @@ hideReg(){
 
 }
 
+// Log Out Function
+
 LogOut(){
     console.log("Выйти!");
     let logOutmass = [0];
