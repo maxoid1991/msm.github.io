@@ -72,7 +72,7 @@ let Auth = (data) => {
 
 let Reg = (data) => {
 
-    db.get().collection("UsersInfo").insertOne({login: data[0], password: data[2], email: data[1], id: 1, info:[]});
+    db.get().collection("UsersInfo").insertOne({login: data[0], password: data[2], email: data[1], id: 1, info:[{"tasks":[]}]});
 
     //Info.push(newUser);
 

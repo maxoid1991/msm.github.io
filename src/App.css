@@ -92,12 +92,52 @@
   z-index: -1;
   opacity: 0;
   transition-duration: .2s;
+  margin-top: 10px;
 }
 
 #SubBtn {
   transition-duration: .2s;
+  margin-top: 10px;
 }
 
 .close, .right-arrow, .left-arrow, .glyphicon-edit {
   cursor: pointer;
 }
+
+.slidecontainer {
+  margin: 10px 0;
+}
+
+.Inp {
+  width: 88%;
+  float: left;
+}
+
+.InputsBox {
+  margin: 7px 0;
+  height: 36px;
+}
+
+
+.InputNumber {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.btn-warning, .btn-info {
+  margin: 10px 0;
+  width: 70%;
+}
+
+.btn-warning2 {
+  width: 25%;
+  margin-left: 5%;
+}
+
+.glyphicon-minus-sign {
+  color: lightgrey;
+  margin-top: 9px;
+  margin-left: 8px;
+}
+
+

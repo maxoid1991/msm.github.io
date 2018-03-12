@@ -45,24 +45,47 @@ componentDidMount(){
 }
 
 //Download input data to server and build new dom element
+//Переписать!
 
-PostData(){
-  let firstfield = document.getElementById('exampleInputEmail1');
-  let secondfield = document.getElementById('exampleInputPassword1');
-  let thirdfield = document.getElementById('exampleInputPassword2');
 
-  if(firstfield.value, secondfield.value, thirdfield.value !== "") {
-    
-    let new_block = {"name":firstfield.value, "age": secondfield.value, city: thirdfield.value};
-    this.setState({data:[...this.state.data, new_block]});
 
-    firstfield.value = "";
-    secondfield.value = "";
-    thirdfield.value = "";
-  } else {
-    alert("Заполните, пожалуйста, все поля формы.")
+PostData() {
+  let InputsText = document.getElementsByClassName("Inp");
+
+  //console.log(InputsText[0].firstChild.value);
+
+  let mass = [];
+
+  for(var i = 0; i < InputsText.length; i++){
+    let InpVal = InputsText[i].firstChild.value;
+    mass.push(InpVal);
   }
-};
+
+  this.setState({data: [...this.state.data, mass]});
+
+  console.log(mass);
+
+  console.log(this.state.data)
+
+}
+
+//PostData(){
+  //let firstfield = document.getElementById('exampleInputEmail1');
+  //let secondfield = document.getElementById('exampleInputPassword1');
+  //let thirdfield = document.getElementById('exampleInputPassword2');
+
+  //if(firstfield.value, secondfield.value, thirdfield.value !== "") {
+    
+    //let new_block = {"name":firstfield.value, "age": secondfield.value, city: thirdfield.value};
+    //this.setState({data:[...this.state.data, new_block]});
+
+    //firstfield.value = "";
+    //secondfield.value = "";
+    //thirdfield.value = "";
+  //} else {
+    //alert("Заполните, пожалуйста, все поля формы.")
+  //}
+//};
 
 
 //Send registration data to server
@@ -101,10 +124,6 @@ logInData(){
       }
 
   })
-
-
-
-
 
 }
 

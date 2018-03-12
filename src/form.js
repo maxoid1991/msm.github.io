@@ -6,7 +6,38 @@ class Form extends Component {
         super(props);
         this.state = {
           date2: [],
+          InputCount : [1],
         }
+     }
+
+     changeInp() {
+       let InputValue = Math.round(document.getElementsByClassName("myRange")[0].value / 10);
+       let Number = document.getElementsByClassName("InputNumber")[0].innerHTML = InputValue;
+     }
+
+     createInputs(){
+      let InputValue = Math.round(document.getElementsByClassName("myRange")[0].value / 10);
+      let mass = [];
+      for (var i = 0; i < InputValue; i++) { mass.push(i) };
+      this.setState({InputCount: mass});
+     }
+
+
+     createInput() {    
+      if(this.state.InputCount.length < 10) {
+        this.state.InputCount.push(1);   
+        this.setState({InputCount: this.state.InputCount})
+      } else {
+        alert("Максимальное колличество ячеек 10.")
+      }
+     }
+
+     delInput(event){
+
+       let id = event.target.parentNode.parentNode.id;
+
+        delete this.state.InputCount[id];
+        this.setState({InputCount : this.state.InputCount})
      }
 
        
@@ -48,18 +79,26 @@ class Form extends Component {
     render(){
         return(
             <form className="col-sm-2">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Name</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name"/>
+            <p>Колличество записей:<span className="InputNumber">1</span></p>
+            <div class="slidecontainer">
+                <input type="range"  min="10" max="100" defaultValue="10" class="slider" className="myRange" onChange={this.changeInp.bind(this)}/>
+                <button type="button" class="btn btn-warning" onClick={this.createInputs.bind(this)}>Создать</button>
+                <button type="button" class="btn btn-info btn-warning2" onClick={this.createInput.bind(this)}><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
             </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Age</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter age"/>
+
+            {this.state.InputCount.map((item, id) => { return(
+
+            <div id = {id}>  
+            <div className="InputsBox">
+            <div className="Inp">
+              <input type="text" className="form-control" placeholder="Введите текст" />
             </div>
-            <div class="form-group">
-              <label for="exampleInputPassword2">City</label>
-              <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Enter city"/>
+            <span class="glyphicon glyphicon-minus-sign krest" aria-hidden="true" onClick={this.delInput.bind(this)}></span>
             </div>
+            </div>
+
+            )})}
+
             <button type="button" class="btn btn-primary " id="SubBtn" onClick={this.props.PostData}>Submit</button>
             <button type="button" class="btn btn-success submit" id="LogBtn" onClick={this.SaveAll.bind(this)} >Save all</button>
           </form>
