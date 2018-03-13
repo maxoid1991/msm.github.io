@@ -1,5 +1,8 @@
-1. cd folder
-2. npm install (install dependencies)
-3. sudo mongod (on mac) (run database)
-4. node server.js (run server)
-5. npm start (run client)
+1. git clone;
+2. cd directory;
+3. npm install;
+4. mongo db install (https://www.mongodb.com/);
+5. Install and run plug-in "Allow-Control-Allow-Origin" ( for Chrome: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi);
+6. sudo mongod (on mac) (run mongodb)
+7. node server.js (run server)
+8. npm start; (run client)
