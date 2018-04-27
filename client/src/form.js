@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+let port ='https://quiet-beach-39102.herokuapp.com';
+
 class Form extends Component {
     constructor(props){
         super(props);
@@ -69,7 +71,7 @@ class Form extends Component {
        console.log(mass);
 
 
-       axios.post('/save', mass).then(res => {
+       axios.post(port + '/save', mass).then(res => {
         this.setState({date2: res.data});
         console.log("Труляля!");
         console.log(res.data);

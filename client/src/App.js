@@ -4,7 +4,7 @@ import Form from './form';
 import DelBlock from './delete-block';
 import AuthFront from './auth_front';
 
-let port ='http://localhost:5000';
+let port ='https://quiet-beach-39102.herokuapp.com';
 
 class App extends Component {
 
@@ -19,7 +19,7 @@ constructor(props){
 //Upload data from server ?????? EROR
 
 componentDidMount(){
-  axios.get(port).then(res => {
+  axios.get(port + "/").then(res => {
 
     let updInfo = () => {
       document.body.getElementsByClassName("auth_Name")[0].style.cssText = "display: block";
@@ -68,7 +68,7 @@ logInData(){
   EmPass.push(EmailLogin);
   EmPass.push(Pass);
 
-  axios.post('/auth_login', EmPass).then(res => {
+  axios.post(port + '/auth_login', EmPass).then(res => {
 
       if(typeof res.data === "string") {
         alert(res.data);

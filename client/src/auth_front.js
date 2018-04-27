@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { setTimeout } from 'timers';
 
+let port ='https://quiet-beach-39102.herokuapp.com';
+
 class AuthFront extends Component {
 
 //Registration Fields
@@ -14,7 +16,7 @@ RegDataSend(){
     let mass = [];
     mass.push(email, adress, pass);
 
-    axios.post('/registration', mass).then(res => {
+    axios.post(port + '/registration', mass).then(res => {
         
         if (res.data === true) {
             document.getElementById("RegistrationEmail").value = "";
@@ -61,7 +63,7 @@ hideReg(){
 
 LogOut(){
     let logOutmass = [0];
-    axios.post('/auth_logout', logOutmass).then(res => {
+    axios.post(port + '/auth_logout', logOutmass).then(res => {
         console.log('Data recieved!');
         window.location.href = window.location.href;
       })
