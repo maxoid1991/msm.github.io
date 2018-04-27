@@ -1,8 +1,8 @@
-1. git clone;
-2. cd directory;
-3. npm install;
-4. mongo db install (https://www.mongodb.com/);
-5. Install and run plug-in "Allow-Control-Allow-Origin" ( for Chrome: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi);
-6. sudo mongod (on mac) (run mongodb)
-7. node server.js (run server)
-8. npm start; (run client)
+Run app guide:
+
+1. Copy project: git clone https://github.com/maxoid1991/msm.github.io.git;
+2. Install server dependencies: cd server & npm install 
+3. Run server: node server.js (run server);
+4. Install client dependencies: cd client & npm install;
+5. Run client: npm start;
+6. Browse to localhost: http://localhost:3000. 
