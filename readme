@@ -6,3 +6,5 @@ Run app guide:
 4. Install client dependencies: cd client & npm install;
 5. Run client: npm start;
 6. Browse to localhost: http://localhost:3000. 
+
+Or see app here: https://maxtodo.herokuapp.com/
