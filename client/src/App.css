@@ -160,4 +160,158 @@
   margin-bottom: -30px;
 }
 
+.glyphicon-plus, .glyphicon-minus {
+  color: lightgrey;
+  font-size: 13px;
+  float: left;
+  margin: .5px 0 0 12px;
+  cursor: pointer;
+}
+
+.glyphicon-plus:hover, .glyphicon-minus:hover , .glyphicon-check:hover, .glyphicon-remove-circle:hover, .glyphicon-ok-circle:hover,
+.glyphicon-circle-arrow-down:hover, .glyphicon-circle-arrow-up:hover, .glyphicon-menu-hamburger:hover  {
+  color: grey;
+  cursor:pointer;
+}
+
+
+.glyphicon-circle-arrow-down, .glyphicon-circle-arrow-up, .glyphicon-ok-circle, .glyphicon-remove-circle  {
+  float: left;
+  color: lightgrey;
+  margin: 8px 0 0 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.glyphicon-circle-arrow-up, .glyphicon-ok-circle, .glyphicon-remove-circle {
+  margin-left: 5px;
+}
+
+.edit_box {
+  width: 0px;
+  height: 30px;
+  float: left;
+  overflow: hidden;
+}
+
+.glyphicon-menu-hamburger {
+  float: left;
+  font-size: 12px;
+  margin: 8px 0 0 10px;
+  color: lightgrey;
+  cursor: pointer;
+}
+
+.glyphicon-check {
+  margin: 1px 8px 0 8px;
+  float: right;
+  color: lightgrey;
+}
+
+.close {
+  font-size: 25px !important;
+  margin-top: -6px;
+}
+
+/*List items status block*/
+
+.status {
+  display: none;
+}
+
+.ItemsAddField {
+  width: calc(100% - 50px) !important;
+  height: 30px;
+  float: left;
+  border-radius: 5px;
+}
+
+.AddItemButton {
+  margin-left: 5px;
+  float: left;
+  width: 45px;
+  height: 34px;
+  border-radius: 5px;
+  background: transparent;
+}
+
+.AddItemBox {
+  display: none;
+}
+
+.plusItem {
+  position:relative;
+  z-index: -2;
+}
+
+.ShowItemInput, .ShowListDone {
+  display: none;
+}
+
+.ListDone {
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: -300%;
+  z-index: 1;
+  background: #C9CCD3;
+  background-image: linear-gradient(45deg, #8baaaa 0%, #ae8b9c 100%);
+  opacity: .8;
+}
+
+.Name_block {
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+
+.ListDoneText {
+  font-size: 330%;
+  position: relative;
+  width: 100%;
+  margin-top: 15px;
+  color: white;
+  z-index: -1;
+  transition-duration: .2s;
+}
+
+.ListDoneTxt {
+  width: 70%;
+  display: block;
+  margin: 5px auto;
+}
+
+.Inp2 {
+  margin-bottom: 10px;
+}
+
+.ListName {
+  background: none;
+  font-style: italic;
+}
+
+.ListStatus, .TaskDone, .ShowItemMenu {
+  display: none;
+}
+
+.ListNamefield {
+  width: 100%;
+  margin: 0px auto 10px;
+}
+
+.Nme_field2 {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
 

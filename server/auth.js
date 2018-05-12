@@ -30,7 +30,13 @@ let Auth = (data) => {
 
 let Reg = (data) => {
 
-    db.get().collection("UsersInfo").insertOne({login: data[0], password: data[2], email: data[1], id: 1, info:[{"tasks":[]}]});
+    db.get().collection("UsersInfo").insertOne({
+        login: data[0],
+        password: data[2],
+        email: data[1],
+        id: 1,
+        info:[]
+    });
 
     return true;
 }
@@ -50,7 +56,7 @@ let newInfo = (data) => {
                 db.get().collection("UsersInfo").updateOne(
                     {_id: ObjectID(docs[i]._id)},
                     {$set: {info: data[0].info}},
-                    function(err, result){console.log("База обновлена!")}
+                    function(err, result){"База данных обновлена!"}
                 )
                 break;
 

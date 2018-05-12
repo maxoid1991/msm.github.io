@@ -6,7 +6,8 @@ class DeleteBlock extends Component {
         super(props);
         this.state = {
             status: true,
-            count: 0
+            count: 0,
+            itemStatus: false
         }
      }
 
@@ -25,57 +26,97 @@ class DeleteBlock extends Component {
 //Edit, save block
 
      edit(event){
+         let Items = event.target.parentNode.parentNode.getElementsByClassName("Item");
+         let AddItemBlock = event.target.nextSibling;
+         let ItemStatus = event.target.parentNode.parentNode.getElementsByClassName("TaskDone");
+         let ListName = event.target.parentNode.previousSibling;
+         let HideIconListDone = event.target.parentNode;
 
-        if (this.state.count % 2 === 0) {
+         let mass = [];
 
-         let NM_field = event.target.parentNode.parentNode.getElementsByClassName("Name_field");
-                        
-            for (var i = 0; i < NM_field.length; i++) {
+         if(this.state.itemStatus === false) {
 
-                //Take innerHTML of Element
-                let pHtml = NM_field[i].innerHTML;
+            //Hide ListDone Icon
 
-                //Create new element - input
-                let Inp = document.createElement("input");
-                Inp.type = "text";
-                Inp.className = "Nme_field";
-                Inp.value = pHtml;
+            HideIconListDone.getElementsByClassName("glyphicon glyphicon-check")[0].style.cssText = "position: relative; z-index: -100; opacity: 0";
 
-                //Add input fields
-                event.target.parentNode.parentNode.appendChild(Inp);      
-            }
+            //Edit ListName field
 
-                let DelNodesLen = NM_field.length;
+            let ListNameText = ListName.innerHTML;
+            ListName.remove();
+            let ListNameInp = document.createElement("input");
+            ListNameInp.className = "Nme_field2 ListNamefield";
+            ListNameInp.value = ListNameText;
+            event.target.parentNode.parentNode.insertBefore(ListNameInp, event.target.parentNode);
 
-                for (i = 0; i < DelNodesLen; i++) {
-                    event.target.parentNode.parentNode.removeChild(NM_field[0]);
-                }
+            //Hide Add new Item block
 
+            AddItemBlock.style.cssText = "position: relative; z-index: -100; opacity: 0";
 
-            this.setState({count: this.state.count + 1})
+             for (var i = 0; i < Items.length; i++) {
+                 
+                //Change p > input
+                 let items = Items[i].getElementsByClassName("Name_field")[0];
+                 mass.push(items.innerHTML);
+                 items.remove();
+                 let input = document.createElement('input');
+                 input.className = "Nme_field";
+                 input.value = mass[i];
+                 let Tsk = Items[i].getElementsByClassName("TaskDone")[0];
+                 Items[i].insertBefore(input, Tsk);
 
+                 //Write item status: Done or not
+                 if (ItemStatus[i].innerHTML === "true") {
+                     event.target.parentNode.parentNode.getElementsByClassName("Nme_field")[i].style.cssText = "text-decoration:line-through";
+                 }
+                                
+                 // Hide Task Done button
+                 Items[i].getElementsByClassName("edit_box")[0].getElementsByClassName("glyphicon-ok-circle")[0].style.cssText = "display: none";
+             }
+
+             this.setState({itemStatus : true})
         } else {
 
-            let Nme_field = event.target.parentNode.parentNode.getElementsByClassName("Nme_field");
+            //Show ListDone Icon 
 
-            for(i = 0; i < Nme_field.length; i++) {
-                let val = Nme_field[i].value;
-                let p = document.createElement("p");
-                p.className = "Name_field";
-                p.innerHTML = val;
-                event.target.parentNode.parentNode.appendChild(p);
+            HideIconListDone.getElementsByClassName("glyphicon glyphicon-check")[0].style.cssText = "position: inherit; z-index: 2; opacity: 1";
+
+            //Edit ListName field
+
+            let ListNameText = ListName.value;
+            ListName.remove();
+            console.log(ListNameText);
+
+            let ListNameInp = document.createElement("p");
+            ListNameInp.className = "Name_field2 ListName";
+            ListNameInp.innerHTML = ListNameText;
+            event.target.parentNode.parentNode.insertBefore(ListNameInp, event.target.parentNode);
+
+            AddItemBlock.style.cssText = "position: inherit; z-index: 2; opacity: 1";
+
+            for (i = 0; i < Items.length; i++) {
+                let items = Items[i].getElementsByClassName("Nme_field")[0];
+                mass.push(items.value);
+                items.remove();
+                let text = document.createElement('p');
+                text.className = "Name_field";
+                text.innerHTML = mass[i];
+                let Tsk = Items[i].getElementsByClassName("TaskDone")[0];
+                Items[i].insertBefore(text, Tsk);
+
+                // Hide Add new item block
+                Items[i].getElementsByClassName("edit_box")[0].getElementsByClassName("glyphicon-ok-circle")[0].style.cssText = "display: block;"; 
+                
+                //Write item status: Done or not
+                if (ItemStatus[i].innerHTML === "true") {
+                    event.target.parentNode.parentNode.getElementsByClassName("Name_field")[i].style.cssText = "text-decoration:line-through; color: grey";
+                    event.target.parentNode.parentNode.getElementsByClassName("Item")[i].getElementsByClassName("edit_box")[0].children[2].style.cssText = "color: green";
+                }
             }
+            this.setState({itemStatus : false})
+        }
 
-            //Del input
-
-            let DelNodesInpLen = Nme_field.length;
-            for (i = 0; i < DelNodesInpLen; i++) {
-                event.target.parentNode.parentNode.removeChild(Nme_field[0]);
-            }
-            this.setState({count: this.state.count + 1})
-
-    }
-}
+     }
 
     //Change place right
 
@@ -100,15 +141,30 @@ class DeleteBlock extends Component {
         }
     }
 
+    Listdone(event){
+        let Item = event.target.parentNode.nextSibling;
+        let Status = event.target.parentNode.parentNode.getElementsByClassName("ListStatus")[0].getElementsByClassName("ShowListDone")[0];
+
+        if (Status.innerHTML === "false") {
+          Item.style.cssText = "left: 0; transition-duration: .2s";
+          Status.innerHTML = "true";
+        } else {
+            console.log("hi!")
+        }
+    }
+
+
     render(){
         return(
             <div className="del_block">
             <span className="glyphicon glyphicon-edit" aria-hidden="true" onClick={this.edit.bind(this)}></span>
+            <span className="glyphicon glyphicon-plus" aria-hidden="true" onClick={this.props.AddItem}></span>
             <span className="glyphicon glyphicon-chevron-left left-arrow" aria-hidden="true" onClick={this.changePlaceRight.bind(this)}></span>
             <span className="glyphicon glyphicon-chevron-right right-arrow" aria-hidden="true" onClick={this.changePlaceLeft.bind(this)}></span>
             <button type="button" className="close" aria-label="Close" onClick={this.close.bind(this)}>
                 <span aria-hidden="true">&times;</span>
             </button>
+            <span className="glyphicon glyphicon-check" aria-hidden="true" onClick={this.Listdone.bind(this)}></span>
             </div>
         )
     }    

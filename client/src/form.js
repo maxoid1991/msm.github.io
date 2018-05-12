@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-let port ='https://quiet-beach-39102.herokuapp.com';
+let port ='http://localhost:5000';
 
 class Form extends Component {
     constructor(props){
@@ -44,43 +44,54 @@ class Form extends Component {
 
        
      SaveAll(){
+       let mass = [{
+         login: undefined,
+         info: []
+       }];
 
-       let all_blocks = document.getElementsByClassName('Name_block');
-       let login = document.getElementById("Auth_Name_field").innerHTML;
+       let ListItemsCont = document.getElementsByClassName("Name_block");
+       let Login = document.getElementById("Auth_Name_field").innerHTML;
 
-       let mass = [
-         {
-           "login": login,
-           "info": [{"tasks": []}]
+       mass[0].login = Login;
+
+       for (var i = 0; i < ListItemsCont.length; i++) {
+         
+        //Get List Name and List Status and login
+         let Name = ListItemsCont[i].getElementsByClassName("ListName")[0].innerHTML;
+         let ListStatus = ListItemsCont[i].getElementsByClassName("ShowListDone")[0].innerHTML;
+
+        //Get Items Text and Items Status
+        let ItemStatus = ListItemsCont[i].getElementsByClassName("Item");
+
+        mass[0].info[i] = {};
+        mass[0].info[i].Items = [];
+        mass[0].info[i].ItemsStatus = [];
+        mass[0].info[i].ListStatus = ListStatus;
+        mass[0].info[i].ListName = Name;
+        mass[0].login = Login;
+
+        for (var u = 0; u < ItemStatus.length; u++) {
+          mass[0].info[i].Items.push(ItemStatus[u].getElementsByClassName("Name_field")[0].innerHTML);
+          mass[0].info[i].ItemsStatus.push(ItemStatus[u].getElementsByClassName("TaskDone")[0].innerHTML);
         }
-       ];
-
-       for (var i = 0; i < all_blocks.length; i++) {
-         let name = all_blocks[i].getElementsByClassName("Name_field").length;
-
-         let nwMass = [];
-
-         for (var u = 0; u < name; u++) {
-           let Inf = all_blocks[i].getElementsByClassName("Name_field")[u].innerHTML;
-           nwMass.push(Inf);
-         }
-
-         mass[0].info[0].tasks.push(nwMass);
+   
        }
+
+       axios.post(port + '/save', mass).then(res => {
+         console.log("Вернулся ответ с сервера!");
+       });
 
        console.log(mass);
 
-
-       axios.post(port + '/save', mass).then(res => {
-        this.setState({date2: res.data});
-        console.log("Труляля!");
-        console.log(res.data);
-      })
      }
 
     render(){
         return(
             <form className="col-sm-2">
+            <p>Название листа:</p>
+            <div className="Inp2">
+              <input type="text" className="form-control" placeholder="Введите название" />
+            </div>
             <p>Колличество записей:<span className="InputNumber">1</span></p>
             <div className="slidecontainer">
                 <input type="range"  min="10" max="100" defaultValue="10"  className="slider myRange" onChange={this.changeInp.bind(this)}/>
@@ -93,7 +104,7 @@ class Form extends Component {
             <div id ={id} key={id}>  
             <div className="InputsBox">
             <div className="Inp">
-              <input type="text" className="form-control" placeholder="Введите текст" />
+              <input type="text" className="form-control" placeholder="Введите задачу" />
             </div>
             <span className="glyphicon glyphicon-minus-sign krest" aria-hidden="true" onClick={this.delInput.bind(this)}></span>
             </div>

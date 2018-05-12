@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { setTimeout } from 'timers';
 
-let port ='https://quiet-beach-39102.herokuapp.com';
+let port ='http://localhost:5000';
 
 class AuthFront extends Component {
 
@@ -62,6 +62,7 @@ hideReg(){
 // Log Out Function
 
 LogOut(){
+    console.log("hi!")
     let logOutmass = [0];
     axios.post(port + '/auth_logout', logOutmass).then(res => {
         console.log('Data recieved!');

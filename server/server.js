@@ -47,12 +47,12 @@ app.post('/auth_login', function (req, res) {
 
     if(result.info) {
 
-    let mass = [];
-    mass.push(result.info, result.login);
-    res.send(mass);
+    res.send(result);
+
+    // Обновление страницы
+
     id = result.id;
-    mass2 = [];
-    mass2.push(result.id, result.info, result.login);
+    mass2.push(result);
 
     } else {
       res.send(result);
@@ -71,12 +71,12 @@ app.post('/registration', function(req, res){
 
 app.post('/save', function (req, res) {
   let change = auth.newInfo(req.body);
-  mass2 = [id];
-  mass2.push(req.body[0].info, req.body[0].login);
+  id = 2;
+  mass2 = [req.body[0], id];
 });
 
 
-db.connect("mongodb://Maxim1991:Linkinpark1991@ds151809.mlab.com:51809/heroku_xx8hf84d", function(err){
+db.connect("mongodb://Maxless1991:Linkinpark1991@ds055895.mlab.com:55895/newbase", function(err){
   if (err) {
     console.log(err);
   }
