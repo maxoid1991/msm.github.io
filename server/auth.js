@@ -18,7 +18,6 @@ let Auth = (data) => {
                 return docs[i];
                 break;
             } else {
-                continue;
                 return "Вы не прошли аутентификацию, попробуйте еще раз!";
             }
         }

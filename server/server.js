@@ -73,6 +73,7 @@ app.post('/save', function (req, res) {
   let change = auth.newInfo(req.body);
   id = 2;
   mass2 = [req.body[0], id];
+  res.send("Cохранено!");
 });
 
 
