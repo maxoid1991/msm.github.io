@@ -319,6 +319,16 @@ html {
   background: #b6c88e;
 }
 
+a {
+  text-decoration: none;
+}
+
+@media all and (max-width: 764px) {
+  .App {
+    font-weight: 300;
+  }
+}
+
 
 .header, .Controller, .List {
   border-radius: 5px;
@@ -349,6 +359,8 @@ html {
   padding: 8px 6%;
   border-radius: 5px;
   margin: 30px 10px;
+  border: solid transparent 1px;
+  background: white;
 }
 
 .Registration_btn_2 {
@@ -440,22 +452,24 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 
 input[type=range]::-moz-range-track {
   width: 100%;
-  height: 5px;
+  height: 1px;
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000;
-  background: #2497E3;
+  background: white;
   border-radius: 1px;
   border: 0px solid #000000;
 }
 input[type=range]::-moz-range-thumb {
   box-shadow: 0px 0px 0px #000000;
-  border: 1px solid #2497E3;
-  height: 18px;
-  width: 18px;
+  height: 25px;
+  width: 25px;
   border-radius: 25px;
-  background: #A1D0FF;
+  background:#d24a43;
   cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -12px;
+  border: 1px transparent solid;
 }
 input[type=range]::-ms-track {
   width: 100%;
@@ -512,21 +526,22 @@ input[type=range]:focus::-ms-fill-upper {
 
 
 .Cntr_minus {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  margin-top: -32px;
-  margin-right: 22px;
+  width: 30px;
+  height: 30px;
   float: right;
+  margin-top: -32px;
+  text-align: center;
+  overflow:hidden;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: white;
 }
 
 .Controller_Task_plus_span {
-  font-size: 25px;
-  padding: 0 10px;
-  border-radius: 50%;
-  margin-left: -9.5px;
+  font-size: 30px;
+  padding: 0 9px;
   position: relative;
-  top: -9px;
+  top: -8.5px;
 }
 
 .Empty_space {
@@ -567,6 +582,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 /*MadeBY*/
+
 
 .header {
   border: solid red 1px;
@@ -613,6 +629,20 @@ header {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+@media all and (max-width:373px) {
+  .AppName {
+    font-size: 1.3em;
+    margin-left: 10px;
+
+  }
+
+  .MadeBY {
+    font-size: 1em;
+    width: 50%;
+    margin-right: 10px;
+  }
 }
 
 .MadeBY > span {
@@ -664,8 +694,13 @@ header {
   font-size: .74em;
   padding: 7px;
   border-radius: 50%;
-  margin-left: -8px;
-  margin-top: -5px;
+  margin-top: -3px;
+  margin-left: -.2px;
+}
+
+.icon_cl {
+  margin-left: -.5px;
+  margin-top: -1px;
 }
 
 /*Icons*/
@@ -689,6 +724,10 @@ header {
 
 .icon_menu_task {
   margin-left: -7.7px;
+}
+
+.icon_m {
+  margin-left: -1px;
 }
 
 
@@ -754,14 +793,17 @@ header {
   margin: 10px 15px;
 }
 
-.Task_buttons:first-child {
-  margin-left: 4px;
-}
 
 .Task_buttons {
   margin: 4px 2px;
   background:none;
-  border: solid 1px transparent;
+}
+
+.icon_menu_task {
+  margin:0;
+  margin-top: -3px;
+  margin-left: .5px;
+  border: solid transparent 1px;
 }
 
 .Task_text {
@@ -841,6 +883,7 @@ header {
   margin: 5px 0;
   margin-right: 10px;
   border: none;
+  background: white;
 }
 
 .Auth_inp:nth-child(odd) {
@@ -918,17 +961,17 @@ header {
 /*Hide button Reg fields*/
 
 .Hide_Auth_btn {
-  margin: 0;
-  margin-top: 4.4px;
   float: none;
+  margin-top: 4.4px;
   transform: rotate(45deg);
-  border: none;
+  background: white;
 }
 
 .Auth_plus {
-  margin-left: -3.5px;
-  border: none;
+  position: relative;
+  top: -11px;
 }
+
 
 @media all and (max-width: 767px) {
 

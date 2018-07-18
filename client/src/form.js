@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-let port ='http://localhost:5000';
+let port ='https://pure-earth-94858.herokuapp.com';
 
 class Form extends Component {
     constructor(props){
@@ -176,7 +176,7 @@ class Form extends Component {
                 <div className="Controller_Task_InpDiv">
                   <input type= "text" className="Controller_Inputs_ListName Controller_Inputs_ListName_Task" placeholder="Задача" />
                 </div> 
-                <button className="Cntr_minus"><span className="Controller_Task_plus_span" onClick={this.delInput.bind(this)}>-</span></button>    
+                <div className="Cntr_minus"><span className="Controller_Task_plus_span" onClick={this.delInput.bind(this)}>-</span></div>    
              </div>
             )})}
             

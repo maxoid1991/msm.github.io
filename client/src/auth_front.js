@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { setTimeout } from 'timers';
 
-let port ='http://localhost:5000';
+let port ='https://pure-earth-94858.herokuapp.com';
 
 class AuthFront extends Component {
 
@@ -88,7 +88,7 @@ render() {
                 <input type= "text" className="col-md-3 col-sm-3 col-xs-12 Controller_Inputs_ListName Auth_inp Auth_login" placeholder="Логин" />
                 <input type= "password" className="col-md-3 col-sm-3 col-xs-12 Controller_Inputs_ListName Auth_inp Auth_pass" placeholder="Пароль" />
                 <button className="col-md-3 col-sm-2 col-xs-12 Registration_btn_1 AddSave_btn_2" onClick={this.props.logInData}>Войти</button>
-                <div className="col-md-1 col-sm-1 col-xs-12 Hide_auth_field" onClick={this.HideLogIn.bind(this)}><button className="Registration_btn_1 Registration_btn_2 Controller_Inputs_plus Hide_Auth_btn"><span className="RangePlus Auth_plus">+</span></button></div>
+                <div className="col-md-1 col-sm-1 col-xs-12 Hide_auth_field" onClick={this.HideLogIn.bind(this)}><div className="Registration_btn_1 Registration_btn_2 Controller_Inputs_plus Hide_Auth_btn"><span className="RangePlus Auth_plus">+</span></div></div>
             </section>
         </div>
 

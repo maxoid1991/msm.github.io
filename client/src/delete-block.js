@@ -168,16 +168,16 @@ class DeleteBlock extends Component {
         return(
             <div className="ListMenu">
             <div className="ListMenu_first">
-              <button className="ListMenu_btn"><span class="glyphicon glyphicon-pencil ListMenu_icon" aria-hidden="true" onClick={this.edit.bind(this)}></span></button>
-              <button className="ListMenu_btn" onClick={this.props.AddItem}><span class="glyphicon glyphicon-plus ListMenu_icon icon_2" aria-hidden="true"></span></button>
+              <div className="ListMenu_btn"><span class="glyphicon glyphicon-pencil ListMenu_icon" aria-hidden="true" onClick={this.edit.bind(this)}></span></div>
+              <div className="ListMenu_btn" onClick={this.props.AddItem}><span class="glyphicon glyphicon-plus ListMenu_icon" aria-hidden="true"></span></div>
             </div>
             <div className="ListMenu_second">
-              <button className="ListMenu_btn" onClick={this.changePlaceLeft.bind(this)}><span class="glyphicon glyphicon-chevron-left ListMenu_icon icon_3" aria-hidden="true"></span></button>
-              <button className="ListMenu_btn" onClick={this.changePlaceRight.bind(this)}><span class="glyphicon glyphicon-chevron-right ListMenu_icon" aria-hidden="true"></span></button>
+              <div className="ListMenu_btn" onClick={this.changePlaceLeft.bind(this)}><span class="glyphicon glyphicon-chevron-left ListMenu_icon" aria-hidden="true"></span></div>
+              <div className="ListMenu_btn" onClick={this.changePlaceRight.bind(this)}><span class="glyphicon glyphicon-chevron-right ListMenu_icon" aria-hidden="true"></span></div>
             </div>
             <div className="ListMenu_third">
-              <button className="ListMenu_btn" onClick={this.Listdone.bind(this)}><span class="glyphicon glyphicon-ok ListMenu_icon  Listdone_icon" aria-hidden="true"></span></button>
-              <button className="ListMenu_btn" onClick={this.close.bind(this)}><span class="glyphicon glyphicon-remove ListMenu_icon icon_close" aria-hidden="true"></span></button>
+              <div className="ListMenu_btn" onClick={this.Listdone.bind(this)}><span class="glyphicon glyphicon-ok ListMenu_icon  Listdone_icon" aria-hidden="true"></span></div>
+              <div className="ListMenu_btn" onClick={this.close.bind(this)}><span class="glyphicon glyphicon-remove ListMenu_icon icon_cl" aria-hidden="true"></span></div>
             </div>
             <div className="ListPult_bg"></div>     
           </div>

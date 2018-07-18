@@ -5,7 +5,7 @@ import DelBlock from './delete-block';
 import AuthFront from './auth_front';
 import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
 
-let port ='http://localhost:5000';
+let port ='https://pure-earth-94858.herokuapp.com';
 
 class App extends Component {
 
@@ -158,12 +158,13 @@ logInData(){
     let SavedLoginPass = JSON.parse(window.localStorage.getItem("myKey"));
     
     if(SavedLoginPass === null) {
-      let saveLoginPass = window.confirm("Сохранить логин и пароль?");
+          let saveLoginPass = window.confirm("Сохранить логин и пароль?");
 
-      if(saveLoginPass === true) {
-        var LocalSt = JSON.stringify(Mass);
-        localStorage.setItem("myKey", LocalSt);
-      }
+    if(saveLoginPass === true) {
+      var LocalSt = JSON.stringify(Mass);
+      localStorage.setItem("myKey", LocalSt);
+    }
+
     }
 
 
@@ -204,16 +205,16 @@ logInData(){
 
 showMenu(event) {
 
-  let Item = event.target.parentNode.parentNode;
-  let Status = event.target.parentNode.parentNode.parentNode.getElementsByClassName("ShowItemMenu")[0];
+   let Item = event.target.parentNode.parentNode;
+   let Status = event.target.parentNode.parentNode.parentNode.getElementsByClassName("ShowItemMenu")[0];
 
-  if(Status.innerHTML === "false") {
-    Item.style.cssText = "width: 151px; transition-duration: .3s";
-    Status.innerHTML = "true";
-  } else {
-    Item.style.cssText = "width: 33px; transition-duration: .3s";
-    Status.innerHTML = "false";
-  }
+   if(Status.innerHTML === "false") {
+     Item.style.cssText = "width: 151px; transition-duration: .3s";
+     Status.innerHTML = "true";
+   } else {
+     Item.style.cssText = "width: 33px; transition-duration: .3s";
+     Status.innerHTML = "false";
+   }
 
 }
 
@@ -284,15 +285,14 @@ AddItem(event) {
   let Show = event.target.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("AddNew_Task")[0];
   let changeSpan = event.target;
 
-
   if (status.innerHTML === "false") {
     Show.style.cssText = "display: block";
     status.innerHTML = "true";
-    changeSpan.className = "glyphicon glyphicon-minus ListMenu_icon";
+    changeSpan.className = "glyphicon glyphicon-minus ListMenu_icon icon_m";
   } else {
     Show.style.cssText = "display: none";
     status.innerHTML = "false";
-    changeSpan.className = "glyphicon glyphicon-plus ListMenu_icon icon_2";
+    changeSpan.className = "glyphicon glyphicon-plus ListMenu_icon";
   }
 
 }
@@ -337,7 +337,7 @@ TaskDoneRemove(event) {
       <header className="col-md-12 col-sm-12 col-xs-12">
         <div className="header_inside">
           <p className="AppName">Task <span>App</span></p>
-          <p className="MadeBY">Разработка & дизайн <span>Максим Кикеня</span></p>
+          <p className="MadeBY">Разработка & дизайн <span><a href="https://vk.com/maxless" target="_blank"> Максим Кикеня</a></span></p>
         </div>
       </header>
 
@@ -409,11 +409,11 @@ TaskDoneRemove(event) {
           {item.Items.map((item, id)=>{return(
             <div className="Task">
               <div className="Buttons_group">
-                <button className="ListMenu_btn Task_buttons" onClick={this.showMenu.bind(this)}><span class="glyphicon glyphicon-align-justify ListMenu_icon icon_menu_task" aria-hidden="true"></span></button>
-                <button className="ListMenu_btn Task_buttons" onClick={this.ListItemDown.bind(this)}><span class="glyphicon glyphicon-chevron-down ListMenu_icon icon_2" aria-hidden="true"></span></button>
-                <button className="ListMenu_btn Task_buttons" onClick={this.ListItemUp.bind(this)}><span class="glyphicon glyphicon-chevron-up ListMenu_icon icon_2" aria-hidden="true"></span></button>
-                <button className="ListMenu_btn Task_buttons" onClick={this.ItemTaskDone.bind(this)}><span class="glyphicon glyphicon-ok ListMenu_icon icon_4" aria-hidden="true"></span></button>
-                <button className="ListMenu_btn Task_buttons" onClick={this.RemoveItem.bind(this)}><span class="glyphicon glyphicon glyphicon-remove ListMenu_icon" aria-hidden="true"></span></button>
+                <div className="ListMenu_btn Task_buttons" onClick={this.showMenu.bind(this)}><span class="glyphicon glyphicon-align-justify ListMenu_icon icon_menu_task" aria-hidden="true"></span></div>
+                <div className="ListMenu_btn Task_buttons" onClick={this.ListItemDown.bind(this)}><span class="glyphicon glyphicon-chevron-down ListMenu_icon icon_menu_task" aria-hidden="true"></span></div>
+                <div className="ListMenu_btn Task_buttons" onClick={this.ListItemUp.bind(this)}><span class="glyphicon glyphicon-chevron-up ListMenu_icon icon_menu_task" aria-hidden="true"></span></div>
+                <div className="ListMenu_btn Task_buttons" onClick={this.ItemTaskDone.bind(this)}><span class="glyphicon glyphicon-ok ListMenu_icon icon_menu_task" aria-hidden="true"></span></div>
+                <div className="ListMenu_btn Task_buttons" onClick={this.RemoveItem.bind(this)}><span class="glyphicon glyphicon glyphicon-remove ListMenu_icon icon_menu_task" aria-hidden="true"></span></div>
               </div>
               <p key={id} className="Task_text">{item}</p>
                 <span className="TaskDone">false</span>
