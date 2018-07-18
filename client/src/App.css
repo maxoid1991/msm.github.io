@@ -360,7 +360,6 @@ a {
   border-radius: 5px;
   margin: 30px 10px;
   border: solid transparent 1px;
-  background: white;
 }
 
 .Registration_btn_2 {
@@ -398,13 +397,15 @@ a {
 }
 
 .RangePlus {
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 100;
-  padding: 0 12px 4px 12px;
+  padding: 0 11px 5px 11px;
   border-radius: 50%;
   margin-left: -4.5px;
   position: relative;
-  top: -10.5px;
+  top: -5px;
+  color: white;
+  border: solid white 1px;
 }
 
 /*Range Styles*/
@@ -526,22 +527,21 @@ input[type=range]:focus::-ms-fill-upper {
 
 
 .Cntr_minus {
-  width: 30px;
+  width: 31px;
   height: 30px;
   float: right;
   margin-top: -32px;
   text-align: center;
-  overflow:hidden;
-  border-radius: 50%;
   margin-right: 10px;
-  background: white;
 }
 
 .Controller_Task_plus_span {
-  font-size: 30px;
-  padding: 0 9px;
-  position: relative;
-  top: -8.5px;
+  font-size: 19px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: white;
 }
 
 .Empty_space {
@@ -639,8 +639,8 @@ header {
   }
 
   .MadeBY {
-    font-size: 1em;
-    width: 50%;
+    font-size: .8em;
+    width: 45%;
     margin-right: 10px;
   }
 }
@@ -692,10 +692,11 @@ header {
 .ListMenu_icon {
   color: white;
   font-size: .74em;
-  padding: 7px;
+  padding: 8px;
+  margin-top: -1.5px;
+
   border-radius: 50%;
-  margin-top: -3px;
-  margin-left: -.2px;
+  background: #698dc9;
 }
 
 .icon_cl {
@@ -723,18 +724,15 @@ header {
 }
 
 .icon_menu_task {
-  margin-left: -7.7px;
+  background: #d24a43;
+  border: solid transparent 1px;
 }
 
-.icon_m {
-  margin-left: -1px;
-}
 
 
 .ListMenu_btn {
   width: 25px;
   height: 25px;
-  background: #698dc9;
   float: left;
   margin: 0 2px;
   margin-top: 6px;
@@ -786,7 +784,7 @@ header {
 
 .Buttons_group {
   height: 33px;
-  width: 33px;
+  width: 34px;
   overflow: hidden;
   border-radius: 30px;
   background: #d24a43;
@@ -801,9 +799,8 @@ header {
 
 .icon_menu_task {
   margin:0;
-  margin-top: -3px;
-  margin-left: .5px;
-  border: solid transparent 1px;
+  margin-top: -4px;
+  margin-right: 10px;
 }
 
 .Task_text {
@@ -833,8 +830,9 @@ header {
 
 .AddNew_Task_btn {
   margin: 15px 15px;
-  border: solid 1px transparent;
+  background: none;
 }
+
 
 
 .ListDone {
@@ -962,9 +960,10 @@ header {
 
 .Hide_Auth_btn {
   float: none;
-  margin-top: 4.4px;
+  margin-top: 8.4px;
+  margin-bottom: 5px;
   transform: rotate(45deg);
-  background: white;
+  background: none;
 }
 
 .Auth_plus {

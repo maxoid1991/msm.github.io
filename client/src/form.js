@@ -176,7 +176,7 @@ class Form extends Component {
                 <div className="Controller_Task_InpDiv">
                   <input type= "text" className="Controller_Inputs_ListName Controller_Inputs_ListName_Task" placeholder="Задача" />
                 </div> 
-                <div className="Cntr_minus"><span className="Controller_Task_plus_span" onClick={this.delInput.bind(this)}>-</span></div>    
+                <div className="Cntr_minus"><span className="glyphicon-minus Controller_Task_plus_span" onClick={this.delInput.bind(this)}></span></div>    
              </div>
             )})}
             

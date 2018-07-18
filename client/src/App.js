@@ -288,7 +288,7 @@ AddItem(event) {
   if (status.innerHTML === "false") {
     Show.style.cssText = "display: block";
     status.innerHTML = "true";
-    changeSpan.className = "glyphicon glyphicon-minus ListMenu_icon icon_m";
+    changeSpan.className = "glyphicon glyphicon-minus ListMenu_icon";
   } else {
     Show.style.cssText = "display: none";
     status.innerHTML = "false";
@@ -427,7 +427,7 @@ TaskDoneRemove(event) {
         </div>
           <div className="AddNew_Task">
             <input type= "text" className=" Controller_Inputs_ListName AddNew_Task_inp" placeholder="Новая запись" />
-            <button className="Registration_btn_1 Registration_btn_2 Controller_Inputs_plus AddNew_Task_btn" onClick={this.AddFromInput.bind(this)}><span className="RangePlus">+</span></button>            
+            <div className="Registration_btn_1 Registration_btn_2 Controller_Inputs_plus AddNew_Task_btn" onClick={this.AddFromInput.bind(this)}><span className="RangePlus">+</span></div>            
           </div>
         </section>
 
