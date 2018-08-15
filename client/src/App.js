@@ -5,8 +5,8 @@ import DelBlock from './delete-block';
 import AuthFront from './auth_front';
 import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
 
-// let port ='https://pure-earth-94858.herokuapp.com';
-let port ='http://localhost:5000';
+let port ='https://pure-earth-94858.herokuapp.com';
+// let port ='http://localhost:5000';
 
 class App extends Component {
 
@@ -89,7 +89,7 @@ let updInfo = () => {
   document.getElementsByClassName("Login_Name")[0].innerHTML = this.state.data[0].login;
 }
 
-if(!SavedLoginPass && !SavedLoginPassSess) {
+if(!SavedLoginPass && !SavedLoginPassSess || SavedLoginPass === null && SavedLoginPassSess === null) {
   axios.post(port + "/", [SavedLoginPass]).then(res => {
 
        console.log("Вот так приходит:");

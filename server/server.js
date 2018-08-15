@@ -127,9 +127,7 @@ db.connect("mongodb://Maxless1991:Linkinpark1991@ds055895.mlab.com:55895/newbase
 
   //Start server after databese success connection
 
-  app.listen(5000, function () {
+  app.listen(process.env.PORT || 5000, function () {
     console.log('Example app listening on port 5000!');
   });
 });
-
-//process.env.PORT || 
