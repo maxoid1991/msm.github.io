@@ -127,6 +127,13 @@ class Form extends Component {
        Auth_block2.style.cssText = "display: none";
        let Auth_block = document.getElementsByClassName("Auth_block")[0];
        Auth_block.style.cssText = "display: block";
+       
+       let LocalSt = window.localStorage.getItem("myKeyLS");
+       
+       if(!LocalSt) {} else {
+         document.getElementsByClassName("Auth_login")[0].value = JSON.parse(LocalSt)[0];
+         document.getElementsByClassName("Auth_pass")[0].value = JSON.parse(LocalSt)[1];
+       }
      }
 
      showReg() {
@@ -139,11 +146,16 @@ class Form extends Component {
      //LogOut function
 
      LogOut(){
-      let logOutmass = [0];
-      axios.post(port + '/auth_logout', logOutmass).then(res => {
-          console.log('Data recieved!');
-          window.location.href = window.location.href;
-        })
+      let SessSt = window.sessionStorage.removeItem("myKey");
+      window.location.href = window.location.href;
+
+      let LocalSt = window.localStorage.getItem("myKey");
+      
+      if(!LocalSt) {} else {
+        window.localStorage.setItem("myKeyLS", LocalSt);
+        window.localStorage.removeItem("myKey");
+        window.location.href = window.location.href;
+      }
   }
 
     render(){
@@ -176,7 +188,7 @@ class Form extends Component {
                 <div className="Controller_Task_InpDiv">
                   <input type= "text" className="Controller_Inputs_ListName Controller_Inputs_ListName_Task" placeholder="Задача" />
                 </div> 
-                <div className="Cntr_minus"><span className="glyphicon-minus Controller_Task_plus_span" onClick={this.delInput.bind(this)}></span></div>    
+                <div className="Cntr_minus"><span className= "Controller_Task_plus_span" onClick={this.delInput.bind(this)}>−</span></div>    
              </div>
             )})}
             

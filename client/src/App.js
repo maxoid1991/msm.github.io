@@ -5,7 +5,8 @@ import DelBlock from './delete-block';
 import AuthFront from './auth_front';
 import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
 
-let port ='https://pure-earth-94858.herokuapp.com';
+// let port ='https://pure-earth-94858.herokuapp.com';
+let port ='http://localhost:5000';
 
 class App extends Component {
 
@@ -64,16 +65,23 @@ LocalSt(){
     document.getElementsByClassName("Auth_login")[0].value = SavedLoginPass[0];
     document.getElementsByClassName("Auth_pass")[0].value = SavedLoginPass[1];
   }
+
+
 }
 
 //Upload data from server
 
 componentWillMount () {
 
+//Send Session User Id
 
-  axios.get(port + "/").then(res => {
+let SavedLoginPass = window.localStorage.getItem("myKey"); 
+let SavedLoginPassSess = window.sessionStorage.getItem("myKey"); 
 
+console.log(SavedLoginPassSess);
+//let SavedLoginPass = JSON.parse(window.localStorage.getItem("myKey"))[2]; 
 
+//Style Function
 let updInfo = () => {
   document.getElementsByClassName("Registration LogIn")[0].style.cssText = "display: block";
   document.getElementsByClassName("Save_btn")[0].style.cssText = "display: block";
@@ -81,21 +89,76 @@ let updInfo = () => {
   document.getElementsByClassName("Login_Name")[0].innerHTML = this.state.data[0].login;
 }
 
+if(!SavedLoginPass && !SavedLoginPassSess) {
+  axios.post(port + "/", [SavedLoginPass]).then(res => {
 
-  //This part re-write;
+       console.log("Вот так приходит:");
 
-    if (res.data[1] > 0) {
-      this.setState({data: res.data});
-      updInfo();
-      this.SetStyles();
-      this.LocalSt();
-  
-    } else {
-      this.setState({data: res.data});
-      this.SetStyles();
-      this.LocalSt();
-    }
-  })
+       console.log(res.data);
+       
+       //This part re-write;
+    
+        if (res.data[1] > 0) {
+          this.setState({data: res.data});
+          updInfo();
+          this.SetStyles();
+          this.LocalSt();
+      
+        } else {
+          this.setState({data: res.data});
+          this.SetStyles();
+          this.LocalSt();
+        }
+      })
+
+} else if (SavedLoginPassSess) {
+  axios.post(port + "/", [JSON.parse(SavedLoginPassSess)[2]]).then(res => {
+    let mass = [];
+    mass.push(res.data);
+    console.log(mass);
+
+    //This part re-write;
+ 
+     if (mass[0].id > 0) {
+       this.setState({data: mass});
+       updInfo();
+       this.SetStyles();
+       this.LocalSt();
+   
+     } else {
+       this.setState({data: res.data});
+       this.SetStyles();
+       this.LocalSt();
+     }
+
+   })
+
+}
+ else if (JSON.parse(SavedLoginPass)[2]) {
+  axios.post(port + "/", [JSON.parse(SavedLoginPass)[2]]).then(res => {
+    let mass = [];
+    mass.push(res.data);
+    console.log(mass);
+
+    //This part re-write;
+ 
+     if (mass[0].id > 0) {
+       this.setState({data: mass});
+       updInfo();
+       this.SetStyles();
+       this.LocalSt();
+   
+     } else {
+       this.setState({data: res.data});
+       this.SetStyles();
+       this.LocalSt();
+     }
+
+   })
+}
+       
+
+
 
 }
 
@@ -153,22 +216,54 @@ logInData(){
   if(Email.value !== "" && Pass.value !== "") {
     Mass.push(Email.value, Pass.value);
 
+    let LocKey = window.localStorage.getItem("myKeyLS");
+
+    if(!LocKey) {
+
+    } else {
+      window.localStorage.setItem("myKey", LocKey);
+    }
+
     //Save login and pass on localStorage;
 
     let SavedLoginPass = JSON.parse(window.localStorage.getItem("myKey"));
     
-    if(SavedLoginPass === null) {
+    if(!SavedLoginPass) {
           let saveLoginPass = window.confirm("Сохранить логин и пароль?");
+          var LocalSt = JSON.stringify(Mass);
 
     if(saveLoginPass === true) {
-      var LocalSt = JSON.stringify(Mass);
       localStorage.setItem("myKey", LocalSt);
+    } else {
+      sessionStorage.setItem("myKey", LocalSt);
     }
-
     }
 
 
     axios.post(port + '/auth_login', Mass).then(res =>{
+
+    //Save session ID
+
+    if(res.data._id === "5acfc3e7734d1d55c31b54dd") {
+
+    } else {
+
+      //Check sessionStorage
+
+      let SessSt = JSON.parse(window.sessionStorage.getItem("myKey"));
+
+      if (SessSt !== null) {
+        SessSt[2] = res.data._id;
+        SessSt = JSON.stringify(SessSt);
+        sessionStorage.setItem("myKey", SessSt);
+      } else {
+        let SavedLoginPass = JSON.parse(window.localStorage.getItem("myKey"));
+        SavedLoginPass[2] = res.data._id;
+        SavedLoginPass = JSON.stringify(SavedLoginPass);
+        localStorage.setItem("myKey", SavedLoginPass);
+      }
+    }
+
       if(typeof res.data === "string") {
         alert(res.data);
       } else {
@@ -427,7 +522,7 @@ TaskDoneRemove(event) {
         </div>
           <div className="AddNew_Task">
             <input type= "text" className=" Controller_Inputs_ListName AddNew_Task_inp" placeholder="Новая запись" />
-            <div className="Registration_btn_1 Registration_btn_2 Controller_Inputs_plus AddNew_Task_btn" onClick={this.AddFromInput.bind(this)}><span className="RangePlus">+</span></div>            
+            <div className="Registration_btn_1 Registration_btn_2 Controller_Inputs_plus AddNew_Task_btn" onClick={this.AddFromInput.bind(this)}><div className="RangePlus">+</div></div>            
           </div>
         </section>
 

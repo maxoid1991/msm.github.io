@@ -396,16 +396,23 @@ a {
   margin-top: 10px;
 }
 
-.RangePlus {
-  font-size: 30px;
-  font-weight: 100;
-  padding: 0 11px 5px 11px;
+.AddNew_Task_btn {
+  margin: 15px 15px;
+  background: none;
   border-radius: 50%;
-  margin-left: -4.5px;
-  position: relative;
-  top: -5px;
-  color: white;
   border: solid white 1px;
+}
+
+.RangePlus {
+  font-size: 20px;
+  color: white;
+  width: 14px;
+  padding-bottom: 3.5px;
+  position: relative;
+  left: 50%;
+  margin-top: 50%;
+  transform: translate(-50%, -50%);
+  border: solid transparent 1px;
 }
 
 /*Range Styles*/
@@ -527,21 +534,21 @@ input[type=range]:focus::-ms-fill-upper {
 
 
 .Cntr_minus {
-  width: 31px;
-  height: 30px;
   float: right;
+  width: 30px;
+  height: 30px;
   margin-top: -32px;
   text-align: center;
   margin-right: 10px;
+  border-radius: 50%;
+  background: white;
 }
 
 .Controller_Task_plus_span {
-  font-size: 19px;
-  display: block;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: white;
+  font-size: 1.3em;
+  display: inline-block;
+  margin-top: 50%;
+  transform: translateY(-50%);
 }
 
 .Empty_space {
@@ -689,6 +696,7 @@ header {
   background: #3b3b3b;
 }
 
+
 .ListMenu_icon {
   color: white;
   font-size: .74em;
@@ -828,11 +836,6 @@ header {
   margin: 15px 15px;
 }
 
-.AddNew_Task_btn {
-  margin: 15px 15px;
-  background: none;
-}
-
 
 
 .ListDone {
@@ -960,15 +963,15 @@ header {
 
 .Hide_Auth_btn {
   float: none;
-  margin-top: 8.4px;
+  margin-top: 4.7px;
   margin-bottom: 5px;
   transform: rotate(45deg);
   background: none;
+  border: solid white 1px;
 }
 
 .Auth_plus {
-  position: relative;
-  top: -11px;
+
 }
 
 

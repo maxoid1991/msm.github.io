@@ -4,7 +4,11 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "cookies": "^0.7.1",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "mongodb": "^2.2.33",
     "pg": "^7.4.1",
     "serve-favicon": "^2.5.0"

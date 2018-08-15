@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { setTimeout } from 'timers';
 
-let port ='https://pure-earth-94858.herokuapp.com';
+// let port ='https://pure-earth-94858.herokuapp.com';
+let port ='http://localhost:5000';
 
 class AuthFront extends Component {
 
@@ -81,14 +82,14 @@ render() {
                 <input type= "text" className="col-md-2 col-sm-2 col-xs-12 Controller_Inputs_ListName Auth_inp Reg_email" placeholder="Email" />
                 <input type= "password" className="col-md-2 col-sm-2 col-xs-12 Controller_Inputs_ListName Auth_inp Reg_pass" placeholder="Пароль" />
                 <button className="col-md-2 col-sm-2 col-xs-12 Registration_btn_1 AddSave_btn_2" onClick={this.RegDataSend.bind(this)}>Регистрировать</button>
-                <div className="col-md-1 col-sm-1 col-xs-12 Hide_auth_field" onClick={this.HideReg.bind(this)}><button className="Registration_btn_1 Registration_btn_2 Controller_Inputs_plus Hide_Auth_btn"><span className="RangePlus Auth_plus">+</span></button></div>
+                <div className="col-md-1 col-sm-1 col-xs-12 Hide_auth_field" onClick={this.HideReg.bind(this)}><button className="Registration_btn_1 Registration_btn_2 Controller_Inputs_plus Hide_Auth_btn"><div className="RangePlus Auth_plus">+</div></button></div>
             </section>
 
             <section className="col-md-12 col-sm-12 col-xs-12 Authorization Auth_block">
                 <input type= "text" className="col-md-3 col-sm-3 col-xs-12 Controller_Inputs_ListName Auth_inp Auth_login" placeholder="Логин" />
                 <input type= "password" className="col-md-3 col-sm-3 col-xs-12 Controller_Inputs_ListName Auth_inp Auth_pass" placeholder="Пароль" />
                 <button className="col-md-3 col-sm-2 col-xs-12 Registration_btn_1 AddSave_btn_2" onClick={this.props.logInData}>Войти</button>
-                <div className="col-md-1 col-sm-1 col-xs-12 Hide_auth_field" onClick={this.HideLogIn.bind(this)}><div className="Registration_btn_1 Registration_btn_2 Controller_Inputs_plus Hide_Auth_btn"><span className="RangePlus Auth_plus">+</span></div></div>
+                <div className="col-md-1 col-sm-1 col-xs-12 Hide_auth_field" onClick={this.HideLogIn.bind(this)}><div className="Registration_btn_1 Registration_btn_2 Controller_Inputs_plus Hide_Auth_btn"><div className="RangePlus Auth_plus">+</div></div></div>
             </section>
         </div>
 
