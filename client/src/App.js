@@ -6,7 +6,7 @@ import AuthFront from './auth_front';
 import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
 
 let port ='https://pure-earth-94858.herokuapp.com';
-// let port ='http://localhost:5000';
+//let port ='http://localhost:5000';
 
 class App extends Component {
 
@@ -240,6 +240,8 @@ logInData(){
     }
 
 
+
+
     axios.post(port + '/auth_login', Mass).then(res =>{
 
     //Save session ID
@@ -265,6 +267,17 @@ logInData(){
     }
 
       if(typeof res.data === "string") {
+        let SSt = window.sessionStorage.getItem("myKey");
+        let LSt = window.localStorage.getItem("myKey");
+
+        if (SSt) {
+          window.sessionStorage.removeItem("myKey");
+        }
+
+        if(LSt) {
+          window.localStorage.removeItem("myKey");
+        }
+
         alert(res.data);
       } else {
         this.setState({data: [res.data]});

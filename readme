@@ -1,10 +1,11 @@
 Run app guide:
 
 1. Copy project: git clone https://github.com/maxoid1991/msm.github.io.git;
-2. Install server dependencies: cd server & npm install 
-3. Run server: node server.js (run server);
-4. Install client dependencies: cd client & npm install;
-5. Run client: npm start;
-6. Browse to localhost: http://localhost:3000. 
+2. Checkout to branch "new_design_branch";
+3. Install server dependencies: cd server & npm install 
+4. Run server: node server.js (run server);
+5. Install client dependencies: cd client & npm install;
+6. Run client: npm start;
+7. Browse to localhost: http://localhost:3000. 
 
-Or see app here: https://maxtodo.herokuapp.com/
+Or see app here: https://maxdo.tk or https://m-do.herokuapp.com

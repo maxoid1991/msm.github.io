@@ -13,13 +13,19 @@ let Auth = (data) => {
 
     return Data.then(function(docs){
 
+        let dataReturn;
+
         for (var i = 0; i < docs.length; i++) {
             if (data[0] === docs[i].login && data[1] === docs[i].password) {
-                return docs[i];
+                dataReturn = docs[i];
                 break;
-            } else {
-                return "Вы не прошли аутентификацию, попробуйте еще раз!";
-            }
+            } else {continue};       
+        }
+
+        if(dataReturn === undefined) {
+            return "Вы не прошли аутентификацию!"
+        } else {
+            return dataReturn;
         }
     })
 
