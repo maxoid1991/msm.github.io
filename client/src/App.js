@@ -442,7 +442,7 @@ TaskDoneRemove(event) {
 
       <AuthFront logInData={this.logInData.bind(this)} />
 
-      <header className="col-md-12 col-sm-12 col-xs-12">
+      <header className="col-md-12 col-sm-12 col-xs-12 specialpadding nopadding">
         <div className="header_inside">
           <p className="AppName">Task <span>App</span></p>
           <p className="MadeBY">Разработка & дизайн <span><a href="https://vk.com/maxless" target="_blank"> Максим Кикеня</a></span></p>
@@ -499,12 +499,16 @@ TaskDoneRemove(event) {
 
       {/*With React*/}
 
-      <Form PostData={this.PostData.bind(this)}/>
+  <Form PostData={this.PostData.bind(this)}/>
 
-      <div className="Task_block">
+
+
+  {/* Task List */}
+
+       <div className="Task_block">
 
       {this.state.data[0].info.map((item, id) => {return(
-        <section id={id} key={id} className="List col-md-3 col-sm-4">
+        <section id={id} key={id} className="List col-lg-3 col-md-3 col-sm-4 specialpadding nopadding">
           <span id = {id}></span>
           <p className="ListName">{item.ListName}</p>
           <DelBlock AddItem = {this.AddItem.bind(this)} ref="a"/>
@@ -540,7 +544,7 @@ TaskDoneRemove(event) {
         </section>
 
       )})}
-      </div>
+      </div> 
 
 
 

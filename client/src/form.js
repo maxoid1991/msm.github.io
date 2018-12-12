@@ -161,7 +161,7 @@ class Form extends Component {
     render(){
         return(
 
-          <nav className="Controller col-md-3 col-sm-4">
+          <nav className="Controller col-md-3 col-sm-4 specialpadding">
       
           <div className="Registration">
               <button className="Registration_btn_1" onClick={this.showReg.bind(this)}>Регистрация</button>

@@ -866,6 +866,8 @@ header {
   margin-top: 20px;
 }
 
+
+
 @media all and (max-width: 767px) {
   .List {
     margin: 40px 0;
@@ -988,6 +990,45 @@ header {
 
 .Registration_btn_1, .Controller_Inputs_ListName, .Cntr_minus, .ListMenu_btn {
   outline: none;
+}
+
+
+/* Addition styles */
+
+.specialpadding {
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+
+@media all and (max-width: 769px) {
+
+  .App {
+    padding: 0 0 !important;
+  }
+  
+  
+  .nopadding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .Controller {
+    border: solid transparent 1px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .header_inside, .Registration, .Controller, .Controller_Inputs, .AddSave, .List, .ListName, .ListMenu, .Task {
+    border-radius: 0px;
+  }
+
 }
 
 
